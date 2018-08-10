@@ -95,7 +95,31 @@ pprint([cc for cc in tokenized_corpus_ii])
 # IMPORTANT: note that some contractions can have multiple forms (e.g. you'll might be you will or you shall), the
 # present implementation neglects those cases
 
-def expand_contractions(sentence, contraction_mapping):
+def expand_contractions(sentence, contraction_mapping=CONTRACTION_MAP):
+
+    # Create a regex pattern out of all the contractions in the contractions map
+    contractions_pattern = re.compile("({})".format(
+        "|".join(contraction_mapping.keys())), flags=re.IGNORECASE | re.DOTALL)
+
+    def expand_match(contraction):
+
+        match = contraction.group(0)
+        first_char = match[0]
+
+        exp_contraction = contraction_mapping.get(match, contraction_mapping.get(match.lower()))
+
+        # Naive approach to preserving the case of the original word (first letter only)
+        if first_char.lower() != exp_contraction[0].lower():
+            exp_contraction = first_char + exp_contraction[1:]
+
+        return exp_contraction
+
+    return contractions_pattern.sub(expand_match, sentence)
+
+
+print("\nSTEP 3: EXPAND CONTRACTIONS: \n")
+pprint([expand_contractions(s) for s in cleaned_corpus_ii])
+
 
 
 
