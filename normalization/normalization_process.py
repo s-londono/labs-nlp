@@ -120,7 +120,8 @@ def expand_contractions(sentence, contraction_mapping=CONTRACTION_MAP):
 print("\nSTEP 3: EXPAND CONTRACTIONS: \n")
 pprint([expand_contractions(s) for s in cleaned_corpus_ii])
 
-
+# 3. CASE CONVERSIONS
+#
 
 
 
