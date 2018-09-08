@@ -48,7 +48,6 @@ def expand_contractions(sentence, contraction_mapping=CONTRACTION_MAP):
 corpus = [expand_contractions(sntnc) for sntnc in raw_corpus]
 
 print("\nSTEP 0: EXPAND CONTRACTIONS: \n")
-
 pprint([c for c in corpus])
 
 
@@ -125,5 +124,5 @@ def remove_stopwords(tokens):
 
 non_stop_corpus = filter(None, [[remove_stopwords(sntnc) for sntnc in c] for c in cleaned_corpus])
 
-print("\nSTEP 5: REMOVE STOPWORDS\n")
+print("\nSTEP 4: REMOVE STOPWORDS\n")
 pprint([nc for nc in non_stop_corpus])

@@ -116,8 +116,7 @@ def remove_stopwords(tokens):
     return [tk for tk in tokens if tk not in lst_stopwords]
 
 
-print("\nSTEP 4: REMOVE STOPWORDS\n")
-
 non_stop_corpus = filter(None, [[remove_stopwords(s) for s in c] for c in tokenized_corpus])
 
+print("\nSTEP 4: REMOVE STOPWORDS\n")
 pprint([nc for nc in non_stop_corpus])
